@@ -67,16 +67,18 @@ REQUIRED_SCHEMAS: Dict[str, Set[str]] = {
         "statusId",
         "status",
     },
-    "constructor_results": {
-        "constructorResultsId",
-        "raceId",
-        "constructorId",
-        "points",
-    },
 }
 
 # Optional tables (won't fail if missing)
-OPTIONAL_TABLES = {"sprint_results", "pit_stops", "lap_times"}
+OPTIONAL_TABLES = {
+    "sprint_results",
+    "pit_stops",
+    "lap_times",
+    "constructor_results",
+    "constructor_standings",
+    "driver_standings",
+    "seasons"
+}
 
 
 def validate_parquet_schema(

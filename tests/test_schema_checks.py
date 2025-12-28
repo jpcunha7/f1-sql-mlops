@@ -127,10 +127,10 @@ def test_validate_all_schemas_with_function(tmp_parquet_dir):
 
 
 def test_required_schemas_completeness():
-    """Test that REQUIRED_SCHEMAS contains all expected tables."""
+    """Test that REQUIRED_SCHEMAS contains all core required tables."""
     expected_tables = [
         'races', 'results', 'drivers', 'constructors',
-        'circuits', 'qualifying', 'status', 'constructor_results'
+        'circuits', 'qualifying', 'status'
     ]
 
     for table in expected_tables:
@@ -140,7 +140,7 @@ def test_required_schemas_completeness():
 
 def test_schema_has_primary_keys():
     """Test that schemas include expected primary key columns."""
-    # Check that each table has its primary key
+    # Check that each required table has its primary key
     assert 'raceId' in REQUIRED_SCHEMAS['races']
     assert 'resultId' in REQUIRED_SCHEMAS['results']
     assert 'driverId' in REQUIRED_SCHEMAS['drivers']

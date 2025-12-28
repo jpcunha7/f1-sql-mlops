@@ -204,4 +204,5 @@ jobs:
 
       - name: Validate docker-compose
         run: |
-          docker-compose config
+          docker compose version
+          docker compose config
