@@ -1,0 +1,87 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Data files (NEVER commit Kaggle data)
+data/raw/
+data/raw_parquet/
+data/features/
+data/warehouse/
+*.duckdb
+*.duckdb.wal
+
+# Keep toy data for CI
+!data/toy_parquet/
+
+# Environment
+.env
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Models
+models/*.pkl
+models/*.joblib
+
+# Reports
+reports/*.html
+reports/*.json
+
+# Predictions
+predictions/*.csv
+predictions/*.json
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+dbt/profiles.yml
+
+# Docker
+.dockerignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+.cache/
