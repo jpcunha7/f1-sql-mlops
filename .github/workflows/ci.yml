@@ -76,7 +76,7 @@ jobs:
 
       - name: Export features
         run: |
-          python -m f1sqlmlops.features.export_features
+          python -m f1sqlmlops.features.export_features --output-dir data/features
 
       - name: Upload feature data
         uses: actions/upload-artifact@v4
