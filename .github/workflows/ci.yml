@@ -117,6 +117,11 @@ jobs:
         env:
           PARQUET_DIR: data/toy_parquet
 
+      - name: Run dbt models
+        run: |
+          cp dbt/profiles.yml.example dbt/profiles.yml
+          cd dbt && dbt deps && dbt build --profiles-dir .
+
       - name: Smoke test - Train Top-10 model
         run: |
           python -m f1sqlmlops.training.train_top10 --n-estimators 10 --max-depth 3
