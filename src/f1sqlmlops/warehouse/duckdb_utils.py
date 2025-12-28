@@ -127,3 +127,16 @@ def inspect_warehouse(db_path: Optional[Path] = None) -> None:
             logger.info(f"  {table_type}: {table_name}")
 
     conn.close()
+
+
+def main():
+    """CLI entry point to register Parquet views."""
+    logger.info("Registering Parquet views in DuckDB warehouse")
+    conn = get_connection()
+    register_parquet_views(conn)
+    conn.close()
+    logger.info("Parquet views registered successfully")
+
+
+if __name__ == "__main__":
+    main()
