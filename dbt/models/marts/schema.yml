@@ -1,0 +1,186 @@
+version: 2
+
+models:
+  - name: dim_driver
+    description: Driver dimension with career statistics
+    columns:
+      - name: driver_id
+        description: Unique identifier for each driver
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: Driver's full name
+        tests:
+          - not_null
+      - name: total_races
+        description: Total number of races participated in
+      - name: career_points
+        description: Total career points
+      - name: top_10_rate
+        description: Rate of top 10 finishes
+      - name: dnf_rate
+        description: Rate of DNFs (did not finish)
+
+  - name: dim_constructor
+    description: Constructor dimension with career statistics
+    columns:
+      - name: constructor_id
+        description: Unique identifier for each constructor
+        tests:
+          - unique
+          - not_null
+      - name: constructor_name
+        description: Team name
+        tests:
+          - not_null
+      - name: total_race_entries
+        description: Total race entries across all drivers
+      - name: career_points
+        description: Total career points
+      - name: top_10_rate
+        description: Rate of top 10 finishes
+      - name: dnf_rate
+        description: Rate of DNFs
+
+  - name: dim_circuit
+    description: Circuit dimension with historical statistics
+    columns:
+      - name: circuit_id
+        description: Unique identifier for each circuit
+        tests:
+          - unique
+          - not_null
+      - name: circuit_name
+        description: Circuit name
+        tests:
+          - not_null
+      - name: country
+        description: Country where circuit is located
+      - name: times_hosted
+        description: Number of times circuit has hosted a race
+      - name: avg_dnf_rate
+        description: Average DNF rate at this circuit
+
+  - name: dim_race
+    description: Race dimension with race-specific statistics
+    columns:
+      - name: race_id
+        description: Unique identifier for each race
+        tests:
+          - unique
+          - not_null
+      - name: year
+        description: Season year
+        tests:
+          - not_null
+      - name: race_name
+        description: Name of the race
+        tests:
+          - not_null
+      - name: race_date
+        description: Date of the race
+        tests:
+          - not_null
+      - name: total_drivers
+        description: Number of drivers who participated
+      - name: dnf_count
+        description: Number of DNFs in this race
+
+  - name: fct_results
+    description: Fact table for race results with performance metrics
+    columns:
+      - name: result_id
+        description: Unique identifier for each result
+        tests:
+          - unique
+          - not_null
+      - name: race_id
+        description: Reference to race dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_race')
+              field: race_id
+      - name: driver_id
+        description: Reference to driver dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_driver')
+              field: driver_id
+      - name: constructor_id
+        description: Reference to constructor dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_constructor')
+              field: constructor_id
+      - name: is_top_10
+        description: Flag for top 10 finish
+        tests:
+          - not_null
+      - name: is_dnf
+        description: Flag for DNF
+        tests:
+          - not_null
+
+  - name: fct_qualifying
+    description: Fact table for qualifying results
+    columns:
+      - name: qualify_id
+        description: Unique identifier for each qualifying result
+        tests:
+          - unique
+          - not_null
+      - name: race_id
+        description: Reference to race dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_race')
+              field: race_id
+      - name: driver_id
+        description: Reference to driver dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_driver')
+              field: driver_id
+      - name: qualifying_position
+        description: Final qualifying position
+
+  - name: fct_features_pre_race
+    description: ML features table with leakage prevention - only includes information available before each race
+    columns:
+      - name: result_id
+        description: Unique identifier linking to result
+        tests:
+          - unique
+          - not_null
+      - name: race_id
+        description: Reference to race dimension
+        tests:
+          - not_null
+      - name: driver_id
+        description: Reference to driver dimension
+        tests:
+          - not_null
+      - name: target_top_10
+        description: Target variable - did driver finish in top 10
+        tests:
+          - not_null
+      - name: target_dnf
+        description: Target variable - did driver DNF
+        tests:
+          - not_null
+      - name: grid_position
+        description: Starting grid position (known pre-race)
+      - name: driver_top10_rate_recent
+        description: Driver's recent top 10 rate (excluding current race)
+      - name: driver_dnf_rate_recent
+        description: Driver's recent DNF rate (excluding current race)
+      - name: constructor_top10_rate_recent
+        description: Constructor's recent top 10 rate (excluding current race)
+      - name: circuit_avg_dnf_rate
+        description: Historical DNF rate at this circuit

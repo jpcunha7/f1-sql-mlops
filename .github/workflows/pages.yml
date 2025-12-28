@@ -1,0 +1,181 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Allow manual trigger
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Generate toy data
+        run: |
+          python -m f1sqlmlops.ingestion.generate_toy_data
+          python -m f1sqlmlops.warehouse.duckdb_utils
+
+      - name: Build dbt models
+        run: |
+          cd dbt && dbt deps && dbt build --profiles-dir .
+
+      - name: Generate dbt docs
+        run: |
+          cd dbt && dbt docs generate --profiles-dir .
+
+      - name: Create docs directory structure
+        run: |
+          mkdir -p _site
+          mkdir -p _site/dbt
+          mkdir -p _site/reports
+
+      - name: Copy dbt docs
+        run: |
+          cp -r dbt/target/* _site/dbt/
+
+      - name: Train models (for Evidently reports)
+        run: |
+          python -m f1sqlmlops.features.export_features
+          python -m f1sqlmlops.training.train_top10 --n-estimators 50 --max-depth 5
+          python -m f1sqlmlops.training.train_dnf --n-estimators 50 --max-depth 5
+
+      - name: Generate Evidently reports
+        run: |
+          python -m f1sqlmlops.training.evaluate
+          python -m f1sqlmlops.training.generate_reports
+
+      - name: Copy Evidently reports
+        run: |
+          cp reports/*.html _site/reports/ || echo "No HTML reports found"
+
+      - name: Create index.html
+        run: |
+          cat > _site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>F1 SQL MLOps - Documentation</title>
+              <style>
+                  body {
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                      max-width: 900px;
+                      margin: 50px auto;
+                      padding: 20px;
+                      line-height: 1.6;
+                      color: #333;
+                  }
+                  h1 { color: #E10600; border-bottom: 3px solid #E10600; padding-bottom: 10px; }
+                  h2 { color: #1e1e1e; margin-top: 30px; }
+                  .card {
+                      border: 1px solid #ddd;
+                      border-radius: 8px;
+                      padding: 20px;
+                      margin: 15px 0;
+                      background: #f9f9f9;
+                  }
+                  .card h3 { margin-top: 0; color: #E10600; }
+                  a { color: #E10600; text-decoration: none; font-weight: 500; }
+                  a:hover { text-decoration: underline; }
+                  .links { display: flex; flex-direction: column; gap: 10px; }
+                  .badge {
+                      display: inline-block;
+                      padding: 4px 8px;
+                      background: #E10600;
+                      color: white;
+                      border-radius: 4px;
+                      font-size: 0.85em;
+                      margin-left: 10px;
+                  }
+              </style>
+          </head>
+          <body>
+              <h1>🏎️ F1 SQL MLOps</h1>
+              <p>Production-grade Formula 1 race prediction pipeline using DuckDB, dbt, MLflow, and scikit-learn.</p>
+
+              <div class="card">
+                  <h3>📊 dbt Documentation</h3>
+                  <p>Interactive documentation for all SQL models, lineage graphs, and data dictionary.</p>
+                  <div class="links">
+                      <a href="./dbt/index.html">View dbt Docs</a>
+                  </div>
+              </div>
+
+              <div class="card">
+                  <h3>📈 Model Performance Reports</h3>
+                  <p>Evidently reports showing classification performance, metrics, and visualizations.</p>
+                  <div class="links">
+                      <a href="./reports/evidently_top10.html">Top-10 Classifier Report</a>
+                      <a href="./reports/evidently_dnf.html">DNF Classifier Report</a>
+                  </div>
+              </div>
+
+              <div class="card">
+                  <h3>🔍 Data Quality Reports</h3>
+                  <p>Data drift analysis comparing training and test distributions.</p>
+                  <div class="links">
+                      <a href="./reports/evidently_drift.html">Data Drift Report</a>
+                  </div>
+              </div>
+
+              <div class="card">
+                  <h3>🔗 Additional Resources</h3>
+                  <div class="links">
+                      <a href="https://github.com/yourusername/f1-sql-mlops">GitHub Repository</a>
+                      <a href="https://github.com/yourusername/f1-sql-mlops/blob/main/README.md">Project README</a>
+                  </div>
+              </div>
+
+              <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em;">
+                  <p>Built with ❤️ using dbt, DuckDB, MLflow, scikit-learn, and Evidently</p>
+                  <p>Last updated: <span id="date"></span></p>
+                  <script>document.getElementById('date').textContent = new Date().toLocaleDateString();</script>
+              </footer>
+          </body>
+          </html>
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build-docs
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

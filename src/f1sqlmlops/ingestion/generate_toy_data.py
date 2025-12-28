@@ -15,11 +15,11 @@ from f1sqlmlops.logging_utils import setup_logger
 logger = setup_logger(__name__)
 
 
-def generate_toy_races(n_seasons: int = 2, races_per_season: int = 5) -> pd.DataFrame:
+def generate_toy_races(n_seasons: int = 7, races_per_season: int = 5, start_year: int = 2014) -> pd.DataFrame:
     """Generate synthetic races table."""
     data = []
     race_id = 1
-    for year in range(2019, 2019 + n_seasons):
+    for year in range(start_year, start_year + n_seasons):
         for round_num in range(1, races_per_season + 1):
             data.append(
                 {
@@ -172,21 +172,30 @@ def generate_toy_seasons(races_df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame([{"year": year, "url": f"http://en.wikipedia.org/wiki/{year}_Formula_One_season"} for year in years])
 
 
-def generate_toy_dataset(output_dir: Optional[Path] = None) -> None:
+def generate_toy_dataset(
+    output_dir: Optional[Path] = None,
+    n_seasons: int = 7,
+    races_per_season: int = 5,
+    n_drivers: int = 10
+) -> None:
     """
     Generate complete synthetic toy dataset.
 
     Args:
         output_dir: Directory to save Parquet files
+        n_seasons: Number of seasons to generate (default 7 for 2014-2020)
+        races_per_season: Races per season
+        n_drivers: Number of drivers
     """
     output_dir = output_dir or (config.DATA_DIR / "toy_parquet")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     logger.info(f"Generating toy dataset in: {output_dir}")
+    logger.info(f"  Seasons: {n_seasons}, Races/season: {races_per_season}, Drivers: {n_drivers}")
 
-    # Generate base tables
-    races_df = generate_toy_races(n_seasons=2, races_per_season=5)
-    drivers_df = generate_toy_drivers(n_drivers=10)
+    # Generate base tables (2014-2020 for train/val/test splits)
+    races_df = generate_toy_races(n_seasons=n_seasons, races_per_season=races_per_season, start_year=2014)
+    drivers_df = generate_toy_drivers(n_drivers=n_drivers)
     constructors_df = generate_toy_constructors(n_teams=5)
     circuits_df = generate_toy_circuits(n_circuits=3)
     status_df = generate_toy_status()

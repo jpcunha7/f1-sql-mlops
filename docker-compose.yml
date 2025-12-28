@@ -1,0 +1,134 @@
+version: '3.8'
+
+services:
+  # Main application service - Streamlit app
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: f1-predictor-app
+    ports:
+      - "8501:8501"  # Streamlit
+    volumes:
+      # Mount data directory for persistence
+      - ./data:/app/data
+      # Mount models directory
+      - ./models:/app/models
+      # Mount MLflow artifacts
+      - ./mlruns:/app/mlruns
+      # Mount reports
+      - ./reports:/app/reports
+    environment:
+      - DUCKDB_PATH=/app/data/warehouse/warehouse.duckdb
+      - DATA_DIR=/app/data
+      - MODELS_DIR=/app/models
+      - TRAIN_END_YEAR=2016
+      - VAL_YEARS=2017,2018
+      - TEST_YEARS=2019,2020
+      # Streamlit config
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+    networks:
+      - f1-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # MLflow tracking server (optional)
+  mlflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: f1-mlflow-server
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./models:/app/models
+    environment:
+      - MLFLOW_BACKEND_STORE_URI=sqlite:///mlruns/mlflow.db
+      - MLFLOW_DEFAULT_ARTIFACT_ROOT=/app/mlruns
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri sqlite:///mlruns/mlflow.db
+      --default-artifact-root /app/mlruns
+    networks:
+      - f1-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Training job (run once)
+  trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: f1-trainer
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./mlruns:/app/mlruns
+    environment:
+      - DUCKDB_PATH=/app/data/warehouse/warehouse.duckdb
+      - DATA_DIR=/app/data
+      - MODELS_DIR=/app/models
+      - TRAIN_END_YEAR=2016
+      - VAL_YEARS=2017,2018
+      - TEST_YEARS=2019,2020
+    command: >
+      sh -c "
+      echo '🏎️  Starting training pipeline...' &&
+      python -m f1sqlmlops.training.train_top10 &&
+      python -m f1sqlmlops.training.train_dnf &&
+      python -m f1sqlmlops.training.evaluate &&
+      echo '✓ Training complete!'
+      "
+    networks:
+      - f1-network
+    profiles:
+      - training  # Only runs when explicitly specified
+
+  # Data pipeline job (run once)
+  pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: f1-pipeline
+    volumes:
+      - ./data:/app/data
+      - ./dbt:/app/dbt
+    environment:
+      - DUCKDB_PATH=/app/data/warehouse/warehouse.duckdb
+      - DATA_DIR=/app/data
+    command: >
+      sh -c "
+      echo '🏎️  Running data pipeline...' &&
+      python -m f1sqlmlops.ingestion.generate_toy_data &&
+      python -m f1sqlmlops.warehouse.duckdb_utils &&
+      cd dbt && dbt build --profiles-dir . &&
+      echo '✓ Pipeline complete!'
+      "
+    networks:
+      - f1-network
+    profiles:
+      - pipeline  # Only runs when explicitly specified
+
+networks:
+  f1-network:
+    driver: bridge
+
+volumes:
+  data:
+  models:
+  mlruns:
+  reports:

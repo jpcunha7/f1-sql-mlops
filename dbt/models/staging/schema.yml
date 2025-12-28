@@ -1,0 +1,118 @@
+version: 2
+
+models:
+  - name: stg_races
+    description: Cleaned and standardized F1 race calendar
+    columns:
+      - name: race_id
+        description: Unique identifier for each race
+        tests:
+          - unique
+          - not_null
+      - name: year
+        description: Season year
+        tests:
+          - not_null
+      - name: circuit_id
+        description: Reference to circuit dimension
+        tests:
+          - not_null
+
+  - name: stg_results
+    description: Cleaned and standardized race results
+    columns:
+      - name: result_id
+        description: Unique identifier for each result
+        tests:
+          - unique
+          - not_null
+      - name: race_id
+        description: Reference to race
+        tests:
+          - not_null
+      - name: driver_id
+        description: Reference to driver
+        tests:
+          - not_null
+      - name: constructor_id
+        description: Reference to constructor
+        tests:
+          - not_null
+
+  - name: stg_qualifying
+    description: Cleaned and standardized qualifying results
+    columns:
+      - name: qualify_id
+        description: Unique identifier for each qualifying result
+        tests:
+          - unique
+          - not_null
+      - name: race_id
+        description: Reference to race
+        tests:
+          - not_null
+      - name: driver_id
+        description: Reference to driver
+        tests:
+          - not_null
+
+  - name: stg_drivers
+    description: Cleaned and standardized driver information
+    columns:
+      - name: driver_id
+        description: Unique identifier for each driver
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: Driver's full name (forename + surname)
+        tests:
+          - not_null
+
+  - name: stg_constructors
+    description: Cleaned and standardized constructor (team) information
+    columns:
+      - name: constructor_id
+        description: Unique identifier for each constructor
+        tests:
+          - unique
+          - not_null
+      - name: constructor_name
+        description: Team name
+        tests:
+          - not_null
+
+  - name: stg_circuits
+    description: Cleaned and standardized circuit information
+    columns:
+      - name: circuit_id
+        description: Unique identifier for each circuit
+        tests:
+          - unique
+          - not_null
+      - name: circuit_name
+        description: Circuit name
+        tests:
+          - not_null
+
+  - name: stg_status
+    description: Cleaned and standardized race finish status codes
+    columns:
+      - name: status_id
+        description: Unique identifier for each status
+        tests:
+          - unique
+          - not_null
+      - name: status_description
+        description: Human-readable status description
+        tests:
+          - not_null
+
+  - name: stg_seasons
+    description: Cleaned and standardized season information
+    columns:
+      - name: year
+        description: Season year
+        tests:
+          - unique
+          - not_null

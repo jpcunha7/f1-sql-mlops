@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw F1 data from Parquet files
+    schema: main
+    tables:
+      - name: raw_races
+        description: F1 race calendar and metadata
+
+      - name: raw_results
+        description: Race results for all drivers
+
+      - name: raw_qualifying
+        description: Qualifying session results
+
+      - name: raw_drivers
+        description: Driver information
+
+      - name: raw_constructors
+        description: Constructor (team) information
+
+      - name: raw_circuits
+        description: Circuit information
+
+      - name: raw_status
+        description: Race finish status codes
+
+      - name: raw_seasons
+        description: Season information

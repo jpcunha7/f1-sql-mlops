@@ -84,9 +84,10 @@ def convert_csv_to_parquet(
 
     logger.info(f"Converting {csv_path.name} -> {table_name}.parquet")
 
-    # Read CSV
+    # Read CSV with proper NULL handling
+    # Kaggle F1 dataset uses '\N' to represent NULL values
     try:
-        df = pd.read_csv(csv_path, low_memory=False)
+        df = pd.read_csv(csv_path, low_memory=False, na_values=['\\N'])
     except Exception as e:
         logger.error(f"Failed to read {csv_path.name}: {e}")
         raise

@@ -1,0 +1,11 @@
+result_id,race_id,driver_id,constructor_id,circuit_id,year,round,race_date,target_top_10,target_dnf,grid_position,qualifying_position,driver_career_races,driver_career_top10_rate,driver_career_dnf_rate,driver_career_wins,driver_top10_rate_recent,driver_dnf_rate_recent,driver_avg_points_recent,driver_avg_positions_gained_recent,driver_races_in_window,constructor_career_entries,constructor_career_top10_rate,constructor_career_dnf_rate,constructor_top10_rate_recent,constructor_dnf_rate_recent,constructor_avg_points_recent,circuit_avg_dnf_rate,circuit_times_hosted,driver_top10_rate_at_circuit,driver_dnf_rate_at_circuit,driver_races_at_circuit,started_top_5,started_top_10,top10_probability,top10_prediction,dnf_probability,dnf_prediction
+281,29,1,1,2,2019,4,2019-04-15,True,False,1,1,35,1.0,0.0,35,1.0,0.0,24.0,0.0,5,35,2.0,0.0,1.0,0.0,22.8,0.057,14,1.0,0.0,11,True,True,1.0,True,0.0,False
+282,29,2,1,2,2019,4,2019-04-15,True,False,2,2,35,1.0,0.0,0,1.0,0.0,22.0,0.0,5,35,2.0,0.0,1.0,0.0,23.2,0.057,14,1.0,0.0,11,True,True,1.0,True,0.0,False
+283,29,3,2,2,2019,4,2019-04-15,True,False,3,3,35,1.0,0.0,0,1.0,0.0,20.0,0.0,5,35,2.0,0.0,1.0,0.0,18.8,0.057,14,1.0,0.0,11,True,True,1.0,True,0.0,False
+284,29,4,2,2,2019,4,2019-04-15,True,False,4,4,35,1.0,0.0,0,1.0,0.0,18.0,0.0,5,35,2.0,0.0,1.0,0.0,19.2,0.057,14,1.0,0.0,11,True,True,1.0,True,0.0,False
+285,29,5,3,2,2019,4,2019-04-15,True,False,5,5,35,1.0,0.0,0,1.0,0.0,16.0,0.0,5,35,2.0,0.0,1.0,0.0,14.8,0.057,14,1.0,0.0,11,True,True,1.0,True,0.0,False
+286,29,6,3,2,2019,4,2019-04-15,True,False,6,6,35,1.0,0.0,0,1.0,0.0,14.0,0.0,5,35,2.0,0.0,1.0,0.0,15.2,0.057,14,1.0,0.0,11,False,True,1.0,True,0.0,False
+287,29,7,4,2,2019,4,2019-04-15,True,False,7,7,35,1.0,0.0,0,1.0,0.0,12.0,0.0,5,35,2.0,0.0,1.0,0.0,10.8,0.057,14,1.0,0.0,11,False,True,1.0,True,0.0,False
+288,29,8,4,2,2019,4,2019-04-15,True,False,8,8,35,1.0,0.0,0,1.0,0.0,10.0,0.0,5,35,2.0,0.0,1.0,0.0,11.2,0.057,14,1.0,0.0,11,False,True,1.0,True,0.0,False
+289,29,9,5,2,2019,4,2019-04-15,True,False,9,9,35,1.0,0.314,0,1.0,0.3,4.8,0.0,5,35,2.0,0.657,1.0,0.3,4.0,0.057,14,1.0,0.36363636363636365,11,False,True,1.0,True,0.3463114690986682,False
+290,29,10,5,2,2019,4,2019-04-15,True,True,10,10,35,1.0,0.343,0,1.0,0.3,4.8,0.0,5,35,2.0,0.657,1.0,0.2,5.6,0.057,14,1.0,0.2727272727272727,11,False,True,1.0,True,0.8716859717127788,True

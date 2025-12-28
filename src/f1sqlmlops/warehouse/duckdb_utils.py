@@ -58,10 +58,13 @@ def register_parquet_views(
         table_name = parquet_file.stem
         view_name = f"raw_{table_name}"
 
+        # Use absolute path to ensure views work from any directory
+        absolute_path = parquet_file.resolve()
+
         # Create or replace view
         query = f"""
         CREATE OR REPLACE VIEW {view_name} AS
-        SELECT * FROM read_parquet('{parquet_file}')
+        SELECT * FROM read_parquet('{absolute_path}')
         """
 
         try:

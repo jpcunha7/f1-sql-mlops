@@ -39,13 +39,20 @@ train:
 
 report:
 	./venv/bin/python -m f1sqlmlops.training.evaluate
+	./venv/bin/python -m f1sqlmlops.training.generate_reports
 
 predict:
-	@if [ -z "$(SEASON)" ] || [ -z "$(ROUND)" ]; then \
-		echo "Usage: make predict SEASON=2020 ROUND=10"; \
+	@if [ -z "$(YEAR)" ]; then \
+		echo "Usage: make predict YEAR=2020 [RACE_ID=35]"; \
+		echo "Example: make predict YEAR=2020"; \
+		echo "Example: make predict YEAR=2020 RACE_ID=35"; \
 		exit 1; \
 	fi
-	./venv/bin/python -m f1sqlmlops.inference.predict --season $(SEASON) --round $(ROUND)
+	@if [ -n "$(RACE_ID)" ]; then \
+		./venv/bin/python -m f1sqlmlops.inference.predict --from-db --year $(YEAR) --race-id $(RACE_ID) --summary; \
+	else \
+		./venv/bin/python -m f1sqlmlops.inference.predict --from-db --year $(YEAR) --summary; \
+	fi
 
 app:
 	./venv/bin/streamlit run app/streamlit_app.py

@@ -1,0 +1,11 @@
+race_id,year,round,driver_id,grid_position,qualifying_position,top10_probability,top10_prediction,dnf_probability,dnf_prediction,target_top_10,target_dnf
+35,2020,5,1,1,1,1.0,True,0.0,False,True,False
+35,2020,5,2,2,2,1.0,True,0.0,False,True,False
+35,2020,5,3,3,3,1.0,True,0.0,False,True,False
+35,2020,5,4,4,4,1.0,True,0.0,False,True,False
+35,2020,5,5,5,5,1.0,True,0.0,False,True,False
+35,2020,5,6,6,6,1.0,True,0.0,False,True,False
+35,2020,5,7,7,7,1.0,True,0.0,False,True,False
+35,2020,5,8,8,8,1.0,True,0.0,False,True,False
+35,2020,5,9,9,9,1.0,True,0.3459950849178772,False,True,False
+35,2020,5,10,10,10,1.0,True,0.7913695875319879,True,True,True

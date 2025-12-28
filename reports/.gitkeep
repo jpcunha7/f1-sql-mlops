@@ -1,0 +1,2 @@
+# This directory stores generated reports
+# HTML and JSON files are gitignored - run `make report` to generate them

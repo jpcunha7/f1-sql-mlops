@@ -1,0 +1,235 @@
+
+================================================================================
+RACE PREDICTIONS SUMMARY
+================================================================================
+
+
+2019 - Round 1 (Race ID: 26)
+--------------------------------------------------------------------------------
+ Driver ID   Grid  Top-10 Prob   DNF Prob      Prediction
+--------------------------------------------------------------------------------
+         1      1       100.0%       0.0%          TOP-10
+         2      2       100.0%       0.0%          TOP-10
+         3      3       100.0%       0.0%          TOP-10
+         4      4       100.0%       0.0%          TOP-10
+         5      5       100.0%       0.0%          TOP-10
+         6      6       100.0%       0.0%          TOP-10
+         7      7       100.0%       0.0%          TOP-10
+         8      8       100.0%       0.0%          TOP-10
+         9      9       100.0%      32.6%          TOP-10
+        10     10       100.0%      87.2%          TOP-10
+
+Total drivers: 10
+Predicted top-10 finishers: 10
+Predicted DNFs: 1
+Average top-10 probability: 100.0%
+Average DNF probability: 12.0%
+Top-10 prediction accuracy: 100.0%
+DNF prediction accuracy: 100.0%
+
+2019 - Round 2 (Race ID: 27)
+--------------------------------------------------------------------------------
+ Driver ID   Grid  Top-10 Prob   DNF Prob      Prediction
+--------------------------------------------------------------------------------
+         1      1       100.0%       0.0%          TOP-10
+         2      2       100.0%       0.0%          TOP-10
+         3      3       100.0%       0.0%          TOP-10
+         4      4       100.0%       0.0%          TOP-10
+         5      5       100.0%       0.0%          TOP-10
+         6      6       100.0%       0.0%          TOP-10
+         7      7       100.0%       0.0%          TOP-10
+         8      8       100.0%       0.0%          TOP-10
+         9      9       100.0%      82.8%          TOP-10
+        10     10       100.0%       5.7%          TOP-10
+
+Total drivers: 10
+Predicted top-10 finishers: 10
+Predicted DNFs: 1
+Average top-10 probability: 100.0%
+Average DNF probability: 8.8%
+Top-10 prediction accuracy: 100.0%
+DNF prediction accuracy: 100.0%
+
+2019 - Round 3 (Race ID: 28)
+--------------------------------------------------------------------------------
+ Driver ID   Grid  Top-10 Prob   DNF Prob      Prediction
+--------------------------------------------------------------------------------
+         1      1       100.0%       0.0%          TOP-10
+         2      2       100.0%       0.0%          TOP-10
+         3      3       100.0%       0.0%          TOP-10
+         4      4       100.0%       0.0%          TOP-10
+         5      5       100.0%       0.0%          TOP-10
+         6      6       100.0%       0.0%          TOP-10
+         7      7       100.0%       0.0%          TOP-10
+         8      8       100.0%       0.0%          TOP-10
+         9      9       100.0%       3.9%          TOP-10
+        10     10       100.0%      21.7%          TOP-10
+
+Total drivers: 10
+Predicted top-10 finishers: 10
+Predicted DNFs: 0
+Average top-10 probability: 100.0%
+Average DNF probability: 2.6%
+Top-10 prediction accuracy: 100.0%
+DNF prediction accuracy: 100.0%
+
+2019 - Round 4 (Race ID: 29)
+--------------------------------------------------------------------------------
+ Driver ID   Grid  Top-10 Prob   DNF Prob      Prediction
+--------------------------------------------------------------------------------
+         1      1       100.0%       0.0%          TOP-10
+         2      2       100.0%       0.0%          TOP-10
+         3      3       100.0%       0.0%          TOP-10
+         4      4       100.0%       0.0%          TOP-10
+         5      5       100.0%       0.0%          TOP-10
+         6      6       100.0%       0.0%          TOP-10
+         7      7       100.0%       0.0%          TOP-10
+         8      8       100.0%       0.0%          TOP-10
+         9      9       100.0%      34.6%          TOP-10
+        10     10       100.0%      87.2%          TOP-10
+
+Total drivers: 10
+Predicted top-10 finishers: 10
+Predicted DNFs: 1
+Average top-10 probability: 100.0%
+Average DNF probability: 12.2%
+Top-10 prediction accuracy: 100.0%
+DNF prediction accuracy: 100.0%
+
+2019 - Round 5 (Race ID: 30)
+--------------------------------------------------------------------------------
+ Driver ID   Grid  Top-10 Prob   DNF Prob      Prediction
+--------------------------------------------------------------------------------
+         1      1       100.0%       0.0%          TOP-10
+         2      2       100.0%       0.0%          TOP-10
+         3      3       100.0%       0.0%          TOP-10
+         4      4       100.0%       0.0%          TOP-10
+         5      5       100.0%       0.0%          TOP-10
+         6      6       100.0%       0.0%          TOP-10
+         7      7       100.0%       0.0%          TOP-10
+         8      8       100.0%       0.0%          TOP-10
+         9      9       100.0%      82.8%          TOP-10
+        10     10       100.0%       5.7%          TOP-10
+
+Total drivers: 10
+Predicted top-10 finishers: 10
+Predicted DNFs: 1
+Average top-10 probability: 100.0%
+Average DNF probability: 8.8%
+Top-10 prediction accuracy: 100.0%
+DNF prediction accuracy: 100.0%
+
+2020 - Round 1 (Race ID: 31)
+--------------------------------------------------------------------------------
+ Driver ID   Grid  Top-10 Prob   DNF Prob      Prediction
+--------------------------------------------------------------------------------
+         1      1       100.0%       0.0%          TOP-10
+         2      2       100.0%       0.0%          TOP-10
+         3      3       100.0%       0.0%          TOP-10
+         4      4       100.0%       0.0%          TOP-10
+         5      5       100.0%       0.0%          TOP-10
+         6      6       100.0%       0.0%          TOP-10
+         7      7       100.0%       0.0%          TOP-10
+         8      8       100.0%       0.0%          TOP-10
+         9      9       100.0%      11.7%          TOP-10
+        10     10       100.0%      27.5%          TOP-10
+
+Total drivers: 10
+Predicted top-10 finishers: 10
+Predicted DNFs: 0
+Average top-10 probability: 100.0%
+Average DNF probability: 3.9%
+Top-10 prediction accuracy: 100.0%
+DNF prediction accuracy: 100.0%
+
+2020 - Round 2 (Race ID: 32)
+--------------------------------------------------------------------------------
+ Driver ID   Grid  Top-10 Prob   DNF Prob      Prediction
+--------------------------------------------------------------------------------
+         1      1       100.0%       0.0%          TOP-10
+         2      2       100.0%       0.0%          TOP-10
+         3      3       100.0%       0.0%          TOP-10
+         4      4       100.0%       0.0%          TOP-10
+         5      5       100.0%       0.0%          TOP-10
+         6      6       100.0%       0.0%          TOP-10
+         7      7       100.0%       0.0%          TOP-10
+         8      8       100.0%       0.0%          TOP-10
+         9      9       100.0%      34.6%          TOP-10
+        10     10       100.0%      81.1%          TOP-10
+
+Total drivers: 10
+Predicted top-10 finishers: 10
+Predicted DNFs: 1
+Average top-10 probability: 100.0%
+Average DNF probability: 11.6%
+Top-10 prediction accuracy: 100.0%
+DNF prediction accuracy: 100.0%
+
+2020 - Round 3 (Race ID: 33)
+--------------------------------------------------------------------------------
+ Driver ID   Grid  Top-10 Prob   DNF Prob      Prediction
+--------------------------------------------------------------------------------
+         1      1       100.0%       0.0%          TOP-10
+         2      2       100.0%       0.0%          TOP-10
+         3      3       100.0%       0.0%          TOP-10
+         4      4       100.0%       0.0%          TOP-10
+         5      5       100.0%       0.0%          TOP-10
+         6      6       100.0%       0.0%          TOP-10
+         7      7       100.0%       0.0%          TOP-10
+         8      8       100.0%       0.0%          TOP-10
+         9      9       100.0%      73.2%          TOP-10
+        10     10       100.0%       5.8%          TOP-10
+
+Total drivers: 10
+Predicted top-10 finishers: 10
+Predicted DNFs: 1
+Average top-10 probability: 100.0%
+Average DNF probability: 7.9%
+Top-10 prediction accuracy: 100.0%
+DNF prediction accuracy: 100.0%
+
+2020 - Round 4 (Race ID: 34)
+--------------------------------------------------------------------------------
+ Driver ID   Grid  Top-10 Prob   DNF Prob      Prediction
+--------------------------------------------------------------------------------
+         1      1       100.0%       0.0%          TOP-10
+         2      2       100.0%       0.0%          TOP-10
+         3      3       100.0%       0.0%          TOP-10
+         4      4       100.0%       0.0%          TOP-10
+         5      5       100.0%       0.0%          TOP-10
+         6      6       100.0%       0.0%          TOP-10
+         7      7       100.0%       0.0%          TOP-10
+         8      8       100.0%       0.0%          TOP-10
+         9      9       100.0%      11.7%          TOP-10
+        10     10       100.0%      27.5%          TOP-10
+
+Total drivers: 10
+Predicted top-10 finishers: 10
+Predicted DNFs: 0
+Average top-10 probability: 100.0%
+Average DNF probability: 3.9%
+Top-10 prediction accuracy: 100.0%
+DNF prediction accuracy: 100.0%
+
+2020 - Round 5 (Race ID: 35)
+--------------------------------------------------------------------------------
+ Driver ID   Grid  Top-10 Prob   DNF Prob      Prediction
+--------------------------------------------------------------------------------
+         1      1       100.0%       0.0%          TOP-10
+         2      2       100.0%       0.0%          TOP-10
+         3      3       100.0%       0.0%          TOP-10
+         4      4       100.0%       0.0%          TOP-10
+         5      5       100.0%       0.0%          TOP-10
+         6      6       100.0%       0.0%          TOP-10
+         7      7       100.0%       0.0%          TOP-10
+         8      8       100.0%       0.0%          TOP-10
+         9      9       100.0%      34.6%          TOP-10
+        10     10       100.0%      79.1%          TOP-10
+
+Total drivers: 10
+Predicted top-10 finishers: 10
+Predicted DNFs: 1
+Average top-10 probability: 100.0%
+Average DNF probability: 11.4%
+Top-10 prediction accuracy: 100.0%
+DNF prediction accuracy: 100.0%

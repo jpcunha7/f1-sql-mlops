@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: int_results_enriched
+    description: Race results enriched with driver, constructor, circuit, and status information
+    columns:
+      - name: result_id
+        description: Unique identifier for each result
+        tests:
+          - unique
+          - not_null
+      - name: race_id
+        description: Reference to race
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_races')
+              field: race_id
+      - name: driver_id
+        description: Reference to driver
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_drivers')
+              field: driver_id
+      - name: constructor_id
+        description: Reference to constructor
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_constructors')
+              field: constructor_id
+      - name: is_top_10
+        description: Flag indicating if driver finished in top 10
+        tests:
+          - not_null
+      - name: is_dnf
+        description: Flag indicating if driver did not finish
+        tests:
+          - not_null
+
+  - name: int_qualifying_clean
+    description: Cleaned qualifying data with parsed times and completion flags
+    columns:
+      - name: qualify_id
+        description: Unique identifier for each qualifying result
+        tests:
+          - unique
+          - not_null
+      - name: race_id
+        description: Reference to race
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_races')
+              field: race_id
+      - name: driver_id
+        description: Reference to driver
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_drivers')
+              field: driver_id
+      - name: best_qualifying_time
+        description: Best qualifying time across all sessions

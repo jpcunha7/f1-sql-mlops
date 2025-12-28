@@ -41,6 +41,18 @@ dev = [
     "jupyter>=1.0.0",
 ]
 
+[project.scripts]
+f1-download-kaggle = "f1sqlmlops.ingestion.kaggle_download:main"
+f1-csv-to-parquet = "f1sqlmlops.ingestion.csv_to_parquet:main"
+f1-generate-toy-data = "f1sqlmlops.ingestion.generate_toy_data:main"
+f1-validate-schemas = "f1sqlmlops.quality.schema_checks:main"
+f1-train-top10 = "f1sqlmlops.training.train_top10:main"
+f1-train-dnf = "f1sqlmlops.training.train_dnf:main"
+f1-evaluate = "f1sqlmlops.training.evaluate:main"
+f1-generate-reports = "f1sqlmlops.training.generate_reports:main"
+f1-predict = "f1sqlmlops.inference.predict:main"
+f1-batch-predict = "f1sqlmlops.inference.batch_predict:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 

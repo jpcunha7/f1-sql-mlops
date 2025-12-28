@@ -1,0 +1,11 @@
+result_id,race_id,driver_id,constructor_id,circuit_id,year,round,race_date,target_top_10,target_dnf,grid_position,qualifying_position,driver_career_races,driver_career_top10_rate,driver_career_dnf_rate,driver_career_wins,driver_top10_rate_recent,driver_dnf_rate_recent,driver_avg_points_recent,driver_avg_positions_gained_recent,driver_races_in_window,constructor_career_entries,constructor_career_top10_rate,constructor_career_dnf_rate,constructor_top10_rate_recent,constructor_dnf_rate_recent,constructor_avg_points_recent,circuit_avg_dnf_rate,circuit_times_hosted,driver_top10_rate_at_circuit,driver_dnf_rate_at_circuit,driver_races_at_circuit,started_top_5,started_top_10,top10_probability,top10_prediction,dnf_probability,dnf_prediction
+321,33,1,1,1,2020,3,2020-03-15,True,False,1,1,35,1.0,0.0,35,1.0,0.0,24.0,0.0,5,35,2.0,0.0,1.0,0.0,22.8,0.071,7,1.0,0.0,6,True,True,1.0,True,0.0,False
+322,33,2,1,1,2020,3,2020-03-15,True,False,2,2,35,1.0,0.0,0,1.0,0.0,22.0,0.0,5,35,2.0,0.0,1.0,0.0,23.2,0.071,7,1.0,0.0,6,True,True,1.0,True,0.0,False
+323,33,3,2,1,2020,3,2020-03-15,True,False,3,3,35,1.0,0.0,0,1.0,0.0,20.0,0.0,5,35,2.0,0.0,1.0,0.0,18.8,0.071,7,1.0,0.0,6,True,True,1.0,True,0.0,False
+324,33,4,2,1,2020,3,2020-03-15,True,False,4,4,35,1.0,0.0,0,1.0,0.0,18.0,0.0,5,35,2.0,0.0,1.0,0.0,19.2,0.071,7,1.0,0.0,6,True,True,1.0,True,0.0,False
+325,33,5,3,1,2020,3,2020-03-15,True,False,5,5,35,1.0,0.0,0,1.0,0.0,16.0,0.0,5,35,2.0,0.0,1.0,0.0,14.8,0.071,7,1.0,0.0,6,True,True,1.0,True,0.0,False
+326,33,6,3,1,2020,3,2020-03-15,True,False,6,6,35,1.0,0.0,0,1.0,0.0,14.0,0.0,5,35,2.0,0.0,1.0,0.0,15.2,0.071,7,1.0,0.0,6,False,True,1.0,True,0.0,False
+327,33,7,4,1,2020,3,2020-03-15,True,False,7,7,35,1.0,0.0,0,1.0,0.0,12.0,0.0,5,35,2.0,0.0,1.0,0.0,10.8,0.071,7,1.0,0.0,6,False,True,1.0,True,0.0,False
+328,33,8,4,1,2020,3,2020-03-15,True,False,8,8,35,1.0,0.0,0,1.0,0.0,10.0,0.0,5,35,2.0,0.0,1.0,0.0,11.2,0.071,7,1.0,0.0,6,False,True,1.0,True,0.0,False
+329,33,9,5,1,2020,3,2020-03-15,True,True,9,9,35,1.0,0.314,0,1.0,0.3,6.4,0.0,5,35,2.0,0.657,1.0,0.3,5.6,0.071,7,1.0,0.3333333333333333,6,False,True,1.0,True,0.7315467834699458,True
+330,33,10,5,1,2020,3,2020-03-15,True,False,10,10,35,1.0,0.343,0,1.0,0.4,3.6,0.0,5,35,2.0,0.657,1.0,0.4,4.4,0.071,7,1.0,0.3333333333333333,6,False,True,1.0,True,0.05787234042553191,False
