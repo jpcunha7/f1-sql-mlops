@@ -186,7 +186,7 @@ jobs:
 
       - name: Test inference - specific race
         run: |
-          python -m f1sqlmlops.inference.predict --from-db --year 2020 --race-id 1 --summary
+          python -m f1sqlmlops.inference.predict --from-db --year 2020 --race-id 31 --summary
 
       - name: Test inference - full year
         run: |
