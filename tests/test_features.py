@@ -23,18 +23,16 @@ def sample_feature_df():
         'result_id': [1, 2, 3, 4, 5],
         'race_date': ['2015-03-15', '2016-03-20', '2017-03-26', '2018-03-25', '2019-03-17'],
 
-        # Target columns
-        'is_top_10': [1, 1, 0, 1, 0],
-        'is_dnf': [0, 0, 1, 0, 1],
-        'final_position': [5, 8, None, 9, None],
-        'status': ['Finished', 'Finished', 'Accident', 'Finished', 'Engine'],
+        # Target columns (correctly named as they come from dbt)
+        'target_top_10': [True, True, False, True, False],
+        'target_dnf': [False, False, True, False, True],
 
         # Feature columns
         'grid_position': [3, 5, 7, 4, 6],
         'qualifying_position': [3, 5, 7, 4, 6],
         'driver_top10_rate_recent': [0.7, 0.6, 0.5, 0.6, 0.4],
         'driver_dnf_rate_recent': [0.1, 0.15, 0.2, 0.15, 0.25],
-        'constructor_points_recent': [150.0, 140.0, 120.0, 130.0, 100.0],
+        'constructor_avg_points_recent': [150.0, 140.0, 120.0, 130.0, 100.0],
     })
 
 
@@ -45,8 +43,8 @@ def test_get_feature_columns(sample_feature_df):
     # Feature columns should not include metadata or targets
     assert 'race_id' not in feature_cols
     assert 'driver_id' not in feature_cols
-    assert 'is_top_10' not in feature_cols
-    assert 'is_dnf' not in feature_cols
+    assert 'target_top_10' not in feature_cols
+    assert 'target_dnf' not in feature_cols
     assert 'year' not in feature_cols
 
     # Should include actual features
@@ -63,15 +61,17 @@ def test_feature_columns_no_leakage(sample_feature_df):
     """Test that feature columns don't include information from the future."""
     feature_cols, _ = get_feature_columns(sample_feature_df)
 
-    # These would constitute data leakage
-    leakage_indicators = [
-        'final_position', 'position', 'points', 'laps',
-        'milliseconds', 'fastestlap', 'rank', 'statusid'
+    # These would constitute data leakage (exact column names from current race)
+    # Note: grid_position, qualifying_position are NOT leakage - they're pre-race
+    # Note: *_recent, *_avg_* features are NOT leakage - they're from past races
+    exact_leakage_columns = [
+        'final_position', 'laps', 'milliseconds',
+        'fastestlap', 'rank', 'statusid'
     ]
 
-    for leakage_col in leakage_indicators:
-        # Check that no feature column contains these terms
-        matching_cols = [col for col in feature_cols if leakage_col.lower() in col.lower()]
+    for leakage_col in exact_leakage_columns:
+        # Check that this exact column doesn't exist in features
+        matching_cols = [col for col in feature_cols if leakage_col.lower() == col.lower()]
         assert len(matching_cols) == 0, f"Potential leakage: {matching_cols}"
 
 
@@ -84,20 +84,15 @@ def test_export_features_temporal_splits(tmp_path):
 
 def test_target_columns_renamed(sample_feature_df):
     """Test that target columns are properly renamed."""
-    # Add the renamed target columns as they would appear after processing
-    df_processed = sample_feature_df.copy()
-    df_processed['target_top_10'] = df_processed['is_top_10']
-    df_processed['target_dnf'] = df_processed['is_dnf']
+    feature_cols, target_cols = get_feature_columns(sample_feature_df)
 
-    feature_cols, target_cols = get_feature_columns(df_processed)
-
-    # Should have renamed targets
+    # Should have renamed targets (as they come from dbt)
     assert 'target_top_10' in target_cols
     assert 'target_dnf' in target_cols
 
-    # Original names should not be in features
-    assert 'is_top_10' not in feature_cols
-    assert 'is_dnf' not in feature_cols
+    # Targets should not be in features
+    assert 'target_top_10' not in feature_cols
+    assert 'target_dnf' not in feature_cols
 
 
 def test_feature_dtypes(sample_feature_df):

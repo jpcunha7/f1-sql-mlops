@@ -80,8 +80,9 @@ def test_validate_parquet_schema_missing_columns(tmp_path):
 
     required_columns = REQUIRED_SCHEMAS['races']
 
-    with pytest.raises(ValueError, match="Schema validation failed"):
-        validate_parquet_schema(parquet_path, required_columns)
+    is_valid, missing_cols = validate_parquet_schema(parquet_path, required_columns)
+    assert not is_valid, "Should detect missing columns"
+    assert len(missing_cols) > 0, "Should return list of missing columns"
 
 
 def test_validate_parquet_schema_case_insensitive(tmp_path):

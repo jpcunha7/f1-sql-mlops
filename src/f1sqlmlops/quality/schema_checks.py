@@ -67,6 +67,12 @@ REQUIRED_SCHEMAS: Dict[str, Set[str]] = {
         "statusId",
         "status",
     },
+    "constructor_results": {
+        "constructorResultsId",
+        "raceId",
+        "constructorId",
+        "points",
+    },
 }
 
 # Optional tables (won't fail if missing)
