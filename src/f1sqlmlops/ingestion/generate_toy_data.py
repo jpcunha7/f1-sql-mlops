@@ -46,7 +46,7 @@ def generate_toy_drivers(n_drivers: int = 10) -> pd.DataFrame:
                 "driverRef": f"driver_{i}",
                 "number": i,
                 "code": f"DR{i:02d}",
-                "forename": f"Driver",
+                "forename": "Driver",
                 "surname": f"{i}",
                 "dob": f"199{i % 10}-01-01",
                 "nationality": "Country",

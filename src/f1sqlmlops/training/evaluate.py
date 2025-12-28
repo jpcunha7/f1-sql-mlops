@@ -14,7 +14,6 @@ from sklearn.metrics import (
     log_loss,
     precision_recall_curve,
     roc_auc_score,
-    roc_curve,
 )
 
 from f1sqlmlops.config import config
@@ -99,11 +98,11 @@ def evaluate_model(
     cm = confusion_matrix(y_test, y_pred)
     logger.info("\nConfusion Matrix:")
     if cm.shape == (2, 2):
-        logger.info(f"                Predicted Negative  Predicted Positive")
+        logger.info("                Predicted Negative  Predicted Positive")
         logger.info(f"Actual Negative      {cm[0, 0]:6d}            {cm[0, 1]:6d}")
         logger.info(f"Actual Positive      {cm[1, 0]:6d}            {cm[1, 1]:6d}")
     else:
-        logger.info(f"Only one class present - confusion matrix not applicable")
+        logger.info("Only one class present - confusion matrix not applicable")
 
     # Precision-Recall curve stats
     precision, recall, thresholds = precision_recall_curve(y_test, y_proba)

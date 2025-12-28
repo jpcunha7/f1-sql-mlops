@@ -1,8 +1,9 @@
 """Shared pytest fixtures and configuration."""
 
-import pytest
 from pathlib import Path
+
 import pandas as pd
+import pytest
 
 
 @pytest.fixture(scope="session")

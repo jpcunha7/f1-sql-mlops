@@ -7,7 +7,6 @@ from pathlib import Path
 
 import mlflow
 import mlflow.sklearn
-import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
@@ -16,9 +15,7 @@ from sklearn.metrics import (
     accuracy_score,
     classification_report,
     log_loss,
-    precision_recall_curve,
     roc_auc_score,
-    roc_curve,
 )
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler

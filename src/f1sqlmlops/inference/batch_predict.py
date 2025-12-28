@@ -8,12 +8,12 @@ from typing import List, Optional
 import pandas as pd
 
 from f1sqlmlops.config import config
+from f1sqlmlops.features.export_features import export_features, get_feature_columns
 from f1sqlmlops.inference.predict import (
     format_predictions_summary,
     load_models,
     predict_race,
 )
-from f1sqlmlops.features.export_features import export_features, get_feature_columns
 from f1sqlmlops.logging_utils import setup_logger
 
 logger = setup_logger(__name__)

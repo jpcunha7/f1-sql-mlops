@@ -11,8 +11,8 @@ from pathlib import Path
 from typing import Optional
 
 import pandas as pd
-from evidently.presets import ClassificationPreset, DataDriftPreset
 from evidently import Report
+from evidently.presets import ClassificationPreset, DataDriftPreset
 
 from f1sqlmlops.config import config
 from f1sqlmlops.features.export_features import export_features

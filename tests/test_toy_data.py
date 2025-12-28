@@ -1,17 +1,18 @@
 """Tests for toy data generation."""
 
-import pytest
 from pathlib import Path
+
 import pandas as pd
+import pytest
 
 from f1sqlmlops.ingestion.generate_toy_data import (
-    generate_toy_races,
     generate_toy_circuits,
-    generate_toy_drivers,
     generate_toy_constructors,
+    generate_toy_dataset,
+    generate_toy_drivers,
     generate_toy_qualifying,
+    generate_toy_races,
     generate_toy_results,
-    generate_toy_dataset
 )
 
 

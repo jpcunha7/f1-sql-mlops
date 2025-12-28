@@ -1,14 +1,12 @@
 """Tests for feature export."""
 
-import pytest
 from pathlib import Path
-import pandas as pd
 
-from f1sqlmlops.features.export_features import (
-    get_feature_columns,
-    export_features
-)
+import pandas as pd
+import pytest
+
 from f1sqlmlops.config import config
+from f1sqlmlops.features.export_features import export_features, get_feature_columns
 
 
 @pytest.fixture

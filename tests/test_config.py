@@ -1,8 +1,9 @@
 """Tests for configuration."""
 
-import pytest
-from pathlib import Path
 import os
+from pathlib import Path
+
+import pytest
 
 from f1sqlmlops.config import config
 
@@ -63,6 +64,7 @@ def test_config_env_override(monkeypatch, tmp_path):
 
     # Reimport config to pick up env var
     from importlib import reload
+
     import f1sqlmlops.config
     reload(f1sqlmlops.config)
     from f1sqlmlops.config import config as reloaded_config

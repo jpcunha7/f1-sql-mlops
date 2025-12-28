@@ -1,15 +1,16 @@
 """Tests for data ingestion modules."""
 
-import pytest
 from pathlib import Path
+
 import pandas as pd
 import pyarrow.parquet as pq
+import pytest
 
 from f1sqlmlops.ingestion.generate_toy_data import (
-    generate_toy_races,
-    generate_toy_drivers,
     generate_toy_constructors,
     generate_toy_dataset,
+    generate_toy_drivers,
+    generate_toy_races,
 )
 from f1sqlmlops.quality.schema_checks import validate_parquet_schema
 

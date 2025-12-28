@@ -2,7 +2,6 @@
 
 import argparse
 import sys
-from pathlib import Path
 
 from f1sqlmlops.config import config
 from f1sqlmlops.logging_utils import setup_logger

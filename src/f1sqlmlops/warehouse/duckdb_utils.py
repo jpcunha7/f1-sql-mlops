@@ -1,8 +1,9 @@
 """DuckDB warehouse utilities for managing database connections and views."""
 
-import duckdb
 from pathlib import Path
 from typing import Optional
+
+import duckdb
 
 from f1sqlmlops.config import config
 from f1sqlmlops.logging_utils import setup_logger
@@ -122,7 +123,7 @@ def inspect_warehouse(db_path: Optional[Path] = None) -> None:
                 f"SELECT COUNT(*) FROM {table_name}"
             ).fetchone()[0]
             logger.info(f"  {table_type}: {table_name} ({count:,} rows)")
-        except:
+        except Exception:
             logger.info(f"  {table_type}: {table_name}")
 
     conn.close()

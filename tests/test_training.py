@@ -1,14 +1,15 @@
 """Smoke tests for training pipeline."""
 
-import pytest
-from pathlib import Path
 import pickle
+from pathlib import Path
+
 import pandas as pd
+import pytest
 from sklearn.ensemble import RandomForestClassifier
 
-from f1sqlmlops.training.train_top10 import create_pipeline as create_top10_pipeline
-from f1sqlmlops.training.train_dnf import create_pipeline as create_dnf_pipeline
 from f1sqlmlops.config import config
+from f1sqlmlops.training.train_dnf import create_pipeline as create_dnf_pipeline
+from f1sqlmlops.training.train_top10 import create_pipeline as create_top10_pipeline
 
 
 @pytest.fixture

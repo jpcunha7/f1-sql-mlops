@@ -69,6 +69,7 @@ jobs:
 
       - name: Run dbt models
         run: |
+          cp dbt/profiles.yml.example dbt/profiles.yml
           cd dbt && dbt deps && dbt build --profiles-dir .
 
       - name: Export features
@@ -169,6 +170,7 @@ jobs:
 
       - name: Run dbt models
         run: |
+          cp dbt/profiles.yml.example dbt/profiles.yml
           cd dbt && dbt deps && dbt build --profiles-dir .
 
       - name: Test inference - specific race

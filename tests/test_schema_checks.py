@@ -1,15 +1,16 @@
 """Tests for schema validation."""
 
-import pytest
 from pathlib import Path
+
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
+import pytest
 
 from f1sqlmlops.quality.schema_checks import (
-    validate_parquet_schema,
+    REQUIRED_SCHEMAS,
     validate_all_schemas,
-    REQUIRED_SCHEMAS
+    validate_parquet_schema,
 )
 
 
