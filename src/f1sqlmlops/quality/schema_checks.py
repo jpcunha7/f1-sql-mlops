@@ -3,7 +3,7 @@
 import argparse
 import sys
 from pathlib import Path
-from typing import Dict, List, Set
+from typing import Dict, List, Optional, Set
 
 import pyarrow.parquet as pq
 
@@ -91,11 +91,14 @@ def validate_parquet_schema(
         parquet_file = pq.ParquetFile(parquet_path)
         schema = parquet_file.schema
 
-        # Get column names
-        actual_columns = {field.name.lower() for field in schema}
+        # Get column names (preserve original case for matching)
+        actual_columns_lower = {field.name.lower() for field in schema}
+        required_columns_lower = {col.lower() for col in required_columns}
 
         # Check for missing columns
-        missing = required_columns - actual_columns
+        missing = required_columns_lower - actual_columns_lower
+        # Return original case for error reporting
+        missing = sorted(missing)
 
         return len(missing) == 0, sorted(missing)
 
