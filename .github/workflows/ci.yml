@@ -65,7 +65,9 @@ jobs:
 
       - name: Register Parquet views in DuckDB
         run: |
-          python -m f1sqlmlops.warehouse.duckdb_utils
+          PARQUET_DIR=data/toy_parquet python -m f1sqlmlops.warehouse.duckdb_utils
+        env:
+          PARQUET_DIR: data/toy_parquet
 
       - name: Run dbt models
         run: |
@@ -111,7 +113,9 @@ jobs:
       - name: Generate toy data (needed for DuckDB)
         run: |
           python -m f1sqlmlops.ingestion.generate_toy_data
-          python -m f1sqlmlops.warehouse.duckdb_utils
+          PARQUET_DIR=data/toy_parquet python -m f1sqlmlops.warehouse.duckdb_utils
+        env:
+          PARQUET_DIR: data/toy_parquet
 
       - name: Smoke test - Train Top-10 model
         run: |
@@ -166,7 +170,9 @@ jobs:
       - name: Generate toy data
         run: |
           python -m f1sqlmlops.ingestion.generate_toy_data
-          python -m f1sqlmlops.warehouse.duckdb_utils
+          PARQUET_DIR=data/toy_parquet python -m f1sqlmlops.warehouse.duckdb_utils
+        env:
+          PARQUET_DIR: data/toy_parquet
 
       - name: Run dbt models
         run: |
